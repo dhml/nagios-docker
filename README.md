@@ -15,6 +15,7 @@ docker run \
 -v $(pwd)/logs/php-fpm:/var/log/php-fpm \
 -v $(pwd)/logs/nagios:/var/log/nagios \
 nagios
+# proceed to: http://localhost:8080/nagios
 # manage processes
 docker exec -it nagios /usr/bin/supervisorctl status
 docker exec -it nagios /usr/bin/supervisorctl restart httpd
