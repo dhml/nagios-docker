@@ -21,6 +21,7 @@ nagios
 # run container in rootless podman
 mkdir -p conf logs/{httpd,php-fpm,nagios}
 podman run \
+--cap-add=CAP_NET_RAW \
 -d \
 --name nagios \
 -p 8080:80 \
