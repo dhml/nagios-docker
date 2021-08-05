@@ -1,6 +1,6 @@
 FROM rockylinux/rockylinux:8.4
 RUN dnf -y install epel-release
-RUN dnf -y install nagios supervisor
+RUN dnf -y install nagios nagios-plugins-nrpe nagios-plugins-tcp supervisor
 # php-fpm does not automatically create this directory
 RUN mkdir -p /run/php-fpm
 COPY supervisord.conf /etc/supervisord.conf
