@@ -9,6 +9,12 @@ docker build -t nagios .
 mkdir -p conf logs/{httpd,php-fpm,nagios}
 # populate conf dir here
 
+# validate configuration
+docker run -it --rm \
+-v $(pwd)/conf/config:/etc/nagios \
+nagios \
+/usr/sbin/nagios -v /etc/nagios/nagios.cfg
+
 # run container
 docker run \
 -d \
@@ -38,6 +44,12 @@ podman build -t nagios .
 
 mkdir -p conf logs/{httpd,php-fpm,nagios}
 # populate conf dir here
+
+# validate configuration
+podman run -it --rm \
+-v $(pwd)/conf/config:/etc/nagios \
+nagios \
+/usr/sbin/nagios -v /etc/nagios/nagios.cfg
 
 # run rootless container
 podman run \
