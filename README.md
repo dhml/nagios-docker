@@ -22,8 +22,12 @@ nagios \
 /usr/sbin/nagios -v /etc/nagios/nagios.cfg
 
 # run container
+export MSMTP_HOST=relay.example.com
+export MSMTP_FROM=noreply@example.com
 docker run \
 -d \
+--env MSMTP_HOST \
+--env MSMTP_FROM \
 --name nagios \
 -p 8080:80 \
 --rm \
@@ -58,9 +62,13 @@ nagios \
 /usr/sbin/nagios -v /etc/nagios/nagios.cfg
 
 # run rootless container
+export MSMTP_HOST=relay.example.com
+export MSMTP_FROM=noreply@example.com
 podman run \
 --cap-add=CAP_NET_RAW \
 -d \
+--env MSMTP_HOST \
+--env MSMTP_FROM \
 --name nagios \
 -p 8080:80 \
 --rm \
