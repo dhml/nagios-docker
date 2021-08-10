@@ -15,8 +15,8 @@ docker push dhml/nagios:latest
 ## Configure Nagios
 
 Modify the contents of the `conf/` directory accordingly.  The contents
-here are those present by default after installing the `nagios` package
-in the [Rocky Linux 8.4
+here are pared down version of those present by default after installing
+the `nagios` package in the [Rocky Linux 8.4
 container](https://hub.docker.com/layers/rockylinux/rockylinux/8.4/images/sha256-f0d7460b97156f6c8ea2ae73152bc11fe410d272387d60ddff36dfcea22ef689).
 
 ## Validate Nagios Configuration
