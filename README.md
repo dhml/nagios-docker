@@ -6,7 +6,7 @@ Build and push the image to [Docker
 Hub](https://hub.docker.com/repository/docker/dhml/nagios):
 
 ```
-docker build -t dhml/nagios:$(git rev-parse --short=12 HEAD) .
+docker build --no-cache -t dhml/nagios:$(git rev-parse --short=12 HEAD) .
 docker tag dhml/nagios:$(git rev-parse --short=12 HEAD) dhml/nagios:latest
 docker push dhml/nagios:$(git rev-parse --short=12 HEAD)
 docker push dhml/nagios:latest
@@ -40,6 +40,21 @@ the system-wide configuration file `/etc/msmtprc` will be written
 allowing alert e-mail to be relayed.  See the [msmtp
 documentation](https://marlam.de/msmtp/msmtp.html) for details.  Note
 that SMTP authentication is not yet supported.
+
+## Sending Nagios Alerts to Microsoft Teams via Webhooks
+
+https://github.com/isaac-galvan/nagios-teams-notify
+
+Configure a `command` such as the following:
+
+```
+define command {
+    command_name    notify_teams
+    command_line    /usr/bin/printf "$LONGSERVICEOUTPUT$" | /usr/local/bin/notify-teams.py "$NOTIFICATIONTYPE$: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$" "$SERVICEOUTPUT$" <teams-channel-webhook-url>
+}
+```
+
+Then configure this command in `host`, `service` or `contact` definitions.
 
 ## Run Container in Docker
 
